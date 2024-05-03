@@ -12,13 +12,16 @@ app.use(express.json());
 app.use("/admin", adminRouter)
 app.use("/user", userRouter)
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/public")));
 app.use("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))
 })
 
 // Connect to MongoDB
 // DONT MISUSE THIS THANKYOU!!
-mongoose.connect('mongodb+srv://kirattechnologies:iRbi4XRDdM7JMMkl@cluster0.e95bnsi.mongodb.net/admin?authSource=admin&replicaSet=atlas-ue73sj-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
+
+mongoose.connect('mongodb+srv://kirattechnologies:iRbi4XRDdM7JMMkl@cluster0.e95bnsi.mongodb.net/admin?authSource=admin&replicaSet=atlas-ue73sj-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDb connected sucessfully...'))
+    .catch(err => console.log(err));
 
 app.listen(3000, () => console.log('Server running on port 3000'));
