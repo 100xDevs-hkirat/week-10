@@ -26,7 +26,7 @@ function Signup() {
                 </Typography>
             </div>
         <div style={{display: "flex", justifyContent: "center"}}>
-            <Card varint={"outlined"} style={{width: 400, padding: 20}}>
+            <Card variant={"outlined"} style={{width: 400, padding: 20}}>
                 <TextField
                     onChange={(event) => {
                         setEmail(event.target.value);
